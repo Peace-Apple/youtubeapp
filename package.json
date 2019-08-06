@@ -1,0 +1,19 @@
+{
+  "name": "youtubeapp",
+  "version": "1.0.0",
+  "description": "RESTful API with Node.js, Express, and PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.12.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+    "nodemon": "^1.19.1"
+  }
+}
