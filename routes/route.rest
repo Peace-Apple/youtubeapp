@@ -1,1 +1,6 @@
 GET http://localhost:3005/subscribers
+
+###
+
+POST http://localhost:3005/subscribers
+Content-Type: application/json
