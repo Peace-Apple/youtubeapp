@@ -1,6 +1,7 @@
-// require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import subscribersRouter from './routes/routes';
+
 const app = express();
 const port = 3005;
 
@@ -14,7 +15,7 @@ app.use(
 //tell express that it should accept json
 app.use(bodyParser.json())
 
-const subscribersRouter = require('./routes/routes')
-app.use('/subscribers', subscribersRouter)
 
-app.listen(3005, () => {console.log(`Server started on port ${port}...`)});
+app.use('/api/v1/subscribers', subscribersRouter)
+
+app.listen(port, () => {console.log(`Server started on port ${port}...`)});
