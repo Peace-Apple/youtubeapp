@@ -1,5 +1,5 @@
 import express from 'express';
-import SubscriberController from './subscriberController';
+import SubscriberController from '../controllers/subscriberController';
 
 const router = express.Router()
 
@@ -40,4 +40,4 @@ router.delete('/:id',
   deleteSubscriber
 )
 
-module.exports = router
+export default router;

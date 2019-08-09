@@ -1,4 +1,4 @@
-import models from '../models';
+import models from '../database/models';
 
 export default class SubscriberController {
     static async getAllSubscribers (req, res) {
