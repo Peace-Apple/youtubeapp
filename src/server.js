@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import subscribersRouter from './routes/routes';
+import subscribersRouter from '../src/routes/routes';
 
 const app = express();
 const port = 3005;
@@ -14,7 +14,6 @@ app.use(
 
 //tell express that it should accept json
 app.use(bodyParser.json())
-
 
 app.use('/api/v1/subscribers', subscribersRouter)
 

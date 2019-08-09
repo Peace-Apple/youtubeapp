@@ -24,7 +24,7 @@ export default class SubscriberController {
   static async getOneSubscriber (req, res) {
     res.status(200).json(
       {
-        sucess: true,
+        success: true,
         message: 'Successfully got subscriber',
         subscriber: res.subscriber
       }
