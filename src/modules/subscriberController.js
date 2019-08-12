@@ -1,8 +1,15 @@
 import models from '../database/models';
+import { check, validationResult } from 'express-validator';
 
 export default class SubscriberController {
   static async getAllSubscribers (req, res) {
     try {
+      // using query property on request object
+      // eg http://localhost:3005/api/v1/subscribers?id=5
+      if (req.query.id) {
+        res.send(`You have requested a subscriber with id ${req.query.id}`)
+      }
+      
       const subscribers = await models.Subscriber.findAll();
       return res.status(200).json(
         {
@@ -32,6 +39,13 @@ export default class SubscriberController {
   }
       
   static async addSubscriber (req, res) {
+    const errors = validationResult(req);
+    // console.log('errors', errors)
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+      return;
+    }
+      
     const { name, subscribedChannel } =req.body;
     const newSubscriber = await models.Subscriber.create(
       {
