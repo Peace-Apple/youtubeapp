@@ -1,7 +1,9 @@
 import express from 'express';
 import { check } from 'express-validator';
 import SubscriberController from '../modules/subscriberController';
+import UserController from '../modules/userController';
 
+// define an express router
 const router = express.Router()
 
 const { 
@@ -13,19 +15,29 @@ const {
   getSubscriber
 } = SubscriberController;
 
+const {
+  registerUser,
+  getAllUsers,
+  getUser,
+  getOneUser,
+  updateUser,
+  deleteUser
+} =UserController;
+
+// Subscription routes
 // Get all subscribers
-router.get('/', 
+router.get('/subscribers', 
   getAllSubscribers
 )
 
 // Get one subscriber
-router.get('/:id', 
+router.get('/subscribers/:id', 
   getSubscriber, 
   getOneSubscriber
 )
 
 // Create one subscriber
-router.post('/', 
+router.post('/subscribers', 
   [ 
     check('name').exists({ checkFalsy: true }).withMessage('Name is required')
       .isString().isLength({ min: 3 }).withMessage('Name should be atleast 3 characters long')
@@ -36,15 +48,44 @@ router.post('/',
 )
 
 // Update one subscriber
-router.patch('/:id', 
+router.patch('/subscribers/:id', 
   getSubscriber, 
   updateSubscriber
 )
 
 // Delete one subscriber
-router.delete('/:id', 
+router.delete('/subscribers/:id', 
   getSubscriber, 
   deleteSubscriber
+)
+
+// User routes
+// register user
+router.post('/users/register',
+  registerUser
+)
+
+// get all users
+router.get('/users',
+  getAllUsers
+)
+
+//get one user
+router.get('/users/:id',
+  getUser,
+  getOneUser
+)
+
+// Update one user
+router.patch('/users/:id', 
+  getUser, 
+  updateUser
+)
+
+// Delete one user
+router.delete('/users/:id', 
+  getUser, 
+  deleteUser
 )
 
 export default router;
