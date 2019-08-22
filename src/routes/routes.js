@@ -2,6 +2,7 @@ import express from 'express';
 import { check } from 'express-validator';
 import SubscriberController from '../modules/subscriberController';
 import UserController from '../modules/userController';
+import authenticate from '../middlewares/authenticate';
 
 // define an express router
 const router = express.Router()
@@ -21,7 +22,8 @@ const {
   getUser,
   getOneUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  loginUser
 } =UserController;
 
 // Subscription routes
@@ -65,8 +67,14 @@ router.post('/users/register',
   registerUser
 )
 
+// login user
+router.post('/users/login',
+  loginUser
+)
+
 // get all users
 router.get('/users',
+  authenticate,
   getAllUsers
 )
 
@@ -78,7 +86,7 @@ router.get('/users/:id',
 
 // Update one user
 router.patch('/users/:id', 
-  getUser, 
+  getUser,
   updateUser
 )
 
