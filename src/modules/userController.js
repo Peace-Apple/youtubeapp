@@ -33,7 +33,7 @@ export default class UserController {
         }
       });
       if(user) {
-        res.status(409).json({
+        return res.status(409).json({
           success: false,
           message: 'User already registered'
         })
